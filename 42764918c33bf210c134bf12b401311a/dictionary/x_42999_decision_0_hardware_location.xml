@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="925c4914c37bf210c134bf12b401311c" extends="sys_import_set_row" label="hardware location" max_length="40" name="x_42999_decision_0_hardware_location" type="collection">
+        <element label="asset tag" max_length="40" name="asset_tag" type="string"/>
+        <element label="Location" max_length="32" name="u_location_ref" reference="cmn_location" type="reference"/>
+        <element label="location" max_length="40" name="u_location" type="string"/>
+        <element label="serial number" max_length="40" name="serial_number" type="string"/>
+        <index name="index">
+            <element name="u_location_ref"/>
+        </index>
+    </element>
+</database>
