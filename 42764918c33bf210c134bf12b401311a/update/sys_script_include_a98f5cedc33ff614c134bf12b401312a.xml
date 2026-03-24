@@ -11,7 +11,7 @@
         <sandbox_callable>false</sandbox_callable>
         <script><![CDATA[var DecisionParser = Class.create();
 DecisionParser.prototype = {
-	_decision: "",
+    _decision: "",
     _entries: [],
 
     DEFAULT_HELPER: function(questions, includeDefaultAnswer = false) {
@@ -112,7 +112,32 @@ DecisionParser.prototype = {
     getEntries: function(helper) {
         var dt = new sn_dt.DecisionTableAPI();
         var questions = dt.getQuestions(this._decision);
-		return helper(questions);
+        return helper(questions);
+    },
+
+    getMap: function(helper) {
+        var entries = this.getEntries(helper);
+
+        // filter out entries with no location, we 
+        // cannot match on them with any valid value
+        entries = entries.filter(function(e) {
+            return e.location.length > 0;
+        });
+
+        // reduce remaining entries to map. This may obfuscate
+        // certain issues in the data such as duplicated location code.
+        // For the clearest view of the data -> use getEntries().
+        // For most efficient iteration over location codes --> use getMap().
+        return entries.reduce((acc, item) => {
+            acc[item.location] = {
+                "valid": item.valid,
+                "message": item.message
+            };
+            if (Object.hasOwn(item, "reference")) {
+                acc[item.location]["reference"] = item["reference"];
+            }
+            return acc;
+        }, {});
     },
 
     type: 'DecisionParser'
@@ -121,13 +146,13 @@ DecisionParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-22 21:28:04</sys_created_on>
         <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>DecisionParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-24 03:54:29</sys_updated_on>
+        <sys_updated_on>2026-03-24 06:42:45</sys_updated_on>
     </sys_script_include>
 </record_update>

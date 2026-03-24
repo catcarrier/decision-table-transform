@@ -4,48 +4,24 @@
         <map display_value="Hardware Location">a24dcd94c37bf210c134bf12b401310f</map>
         <order>100</order>
         <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
-    // Populate a location Reference for all rows using
-    // the DT API
-
-    // first get the decision table
-    var gr_decision = new GlideRecord("sys_decision");
-    gr_decision.addQuery("name", "Vendor Location Lookup");
-    gr_decision.setLimit(1);
-    gr_decision.query();
-    gr_decision.next(); // check omitted for readability
-    var decision = gr_decision.getValue("sys_id");
-    
-    // Use the DT to populate a Location reference.
-
-    // Important! Calling the DT for each import set row, 
-    // as shown here, is inefficient. Instead, do one of:
-    // - get the whole DT via the API and pull out all the
-    //   conditions and answers, and put them in a map, OR
-    // - do like shown here but cache each response
-	//var dt = new sn_dt.DecisionTableAPI();
-
-	//var parser = new DecisionParser(decision);
-	//var entries = parser.getEntries(false, DecisionParser.Filter.VALID, false);
-
+    // Populate a location Reference based on location code
+    var parser = new x_42999_decision_0.DecisionParser("Vendor Location Lookup");
+    var entries = parser.getEntries(parser.DEFAULT_HELPER.bind(parser));
+    entries = parser.getMap(entries);
 
     var gr_is_row = new GlideRecord("x_42999_decision_0_hardware_location");
     gr_is_row.addQuery("sys_import_set", import_set.sys_id);
     gr_is_row.query();
     while (gr_is_row.hasNext()) {
-		gr_is_row.next();
-
-		
-        //var inputs = {};
-        //inputs['u_location'] = gr_is_row.getValue("u_location");
-        //var response = dt.getDecision(decision, inputs);
-        // if (response) {
-        //     var result_elements = response.result_elements;
-        //     var u_ref = result_elements.u_location.getValue();
-        //     if (u_ref) {
-        //         gr_is_row.setValue("u_location_ref", u_ref);
-        //         gr_is_row.update();
-        //     }
-        // }
+        gr_is_row.next();
+        var locationCode = gr_is_row.getValue("u_location") || "";
+        if (Object.hasOwn(entries, locationCode)) {
+            var entry = entries[locationCode];
+            if (entry.valid) {
+                gr_is_row.setValue("u_location_ref", u_ref);
+                gr_is_row.update();
+            }
+        }
     }
 
 })(source, map, log, target);]]></script>
@@ -53,14 +29,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-19 03:14:47</sys_created_on>
         <sys_id>fb9d49d4c37bf210c134bf12b40131c0</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>onStart</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_transform_script_fb9d49d4c37bf210c134bf12b40131c0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-24 01:39:00</sys_updated_on>
+        <sys_updated_on>2026-03-24 06:23:38</sys_updated_on>
         <when>onStart</when>
     </sys_transform_script>
 </record_update>
