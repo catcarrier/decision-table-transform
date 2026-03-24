@@ -12,47 +12,17 @@
         <script><![CDATA[var DecisionParser = Class.create();
 DecisionParser.prototype = {
 
-    _decision: null,
-    _entries: {},
+    _entries: [],
 
-    Filter: {
-        ALL: 0,
-        VALID: 1,
-        INVALID: 2
-    },
+    DEFAULT_PARSER: function(questions, includeDefaultAnswer = false) {
+        var entries = questions.result; // array
+        if (!includeDefault) entries = entries.filter(e => defaultAnswer == false);
 
-    initialize: function(decision_sys_id) {
-        this._decision = decision_sys_id;
-    },
-
-    getEntries: function(includeDefault = false, filter = Filter.VALID) {
-        var dt = new sn_dt.DecisionTableAPI();
-        var questions = dt.getQuestions(this._decision);
-
-		// simply the structure of each question
-		questions = this._transform(questions, includeDefault);
-
-		// mark questions invalid in certain cases
-		questions = this._validate(questions);
-
-		// TODO
-		// filter
-
-        return questions;
-    },
-
-    _transform: function(questions, includeDefault) {
-        questions = questions.result;
-
-        // filter out the default answer
-        if (!includeDefault) questions = questions.filter(e => defaultAnswer == false);
-
-        questions = questions.map(function(e) {
-
+        entries = entries.map(function(e) {
             // The question has a 'answer.valid' property, and we treat that
-            // as our 'valid' for now. In a few cases we will override this.
+            // as our 'valid' for now. May override later.
 
-            // In rare cases, answer.valid is false, such as if the 
+            // In a few cases, answer.valid is false, such as if the 
             // referenced location has been deleted. We do not get a 
             // message saying what the problem is, so we do not set message here.
             var obj = {
@@ -60,6 +30,8 @@ DecisionParser.prototype = {
                 "location": "",
                 "message": ""
             };
+
+            // In a few cases we will set valid to false for other reasons.
 
             // Ex: "condition": "u_location=54^EQ",
             obj.location = e.condition == "" ? "" : e.condition.split("=")[1].split("^")[0].trim();
@@ -73,21 +45,122 @@ DecisionParser.prototype = {
             }
         });
 
-        return questions;
+        // If any object has no reference, mark it invalid
+        entries
+            .filter(function(e) {
+                return e.valid && !Object.hasOwn(e, 'reference');
+            })
+            .forEach(function(e) {
+                e.valid = false;
+                e.message = "no valid result";
+            });
+
+
+        // If any entry has a blank location, mark it invalid
+        entries
+            .filter(function(e) {
+                return e.valid && e.location.length == 0;
+            })
+            .forEach(function(e) {
+                e.valid = false;
+                e.message = "no location";
+            });
+
+        // Get all the locations, check for duplicates, mark invalid
+        // any entry having one of these
+        const locationCounts = {};
+        const duplicateLocations = new Set();
+        entries
+            .filter(function(e) {
+                return e.location.length > 0;
+            })
+            .forEach(function(e) {
+				locationCounts[e.location] = (locationCounts[e.location] || 0) + 1;
+            });
+        for (const value of locationCounts) {
+            if (locationCounts[value] > 1) {
+                duplicateLocations.add(value);
+            }
+        }
+        entries
+            .filter(function(e) {
+				return e.valid == true && duplicateLocations.has(e.location);
+            })
+			.forEach(function(e) {
+				e.valid = false;
+				e.message = "Duplicate location";
+			});
+
+        return entries;
     },
 
-	_validate: function(questions) {
-		questions = this._validateUniqueness(questions);
+    Filter: {
+        ALL: 0,
+        VALID: 1,
+        INVALID: 2
+    },
+
+    initialize: function(decision_sys_id, helper = this.DEFAULT_PARSER, includeDefault = false) {
+        var dt = new sn_dt.DecisionTableAPI();
+        this._entries = helper(dt.getQuestions(decision_sys_id), includeDefault);
+    },
+
+    getEntries: function(filter = Filter.VALID) {
+        return this._entries.filter(function(e) {
+            if (filter == Filter.ALL) return true;
+            if (filter == Filter.VALID && e.valid) return true;
+            if (filter == Filter.INVALID && !e.valid) return true;
+            return false;
+        });
+    },
+
+    // _transform: function(questions, includeDefault) {
+    //     questions = questions.result;
+
+    //     // filter out the default answer
+    //     if (!includeDefault) questions = questions.filter(e => defaultAnswer == false);
+
+    //     questions = questions.map(function(e) {
+
+    //         // The question has a 'answer.valid' property, and we treat that
+    //         // as our 'valid' for now. In a few cases we will override this.
+
+    //         // In rare cases, answer.valid is false, such as if the 
+    //         // referenced location has been deleted. We do not get a 
+    //         // message saying what the problem is, so we do not set message here.
+    //         var obj = {
+    //             "valid": e.answer.valid,
+    //             "location": "",
+    //             "message": ""
+    //         };
+
+    //         // Ex: "condition": "u_location=54^EQ",
+    //         obj.location = e.condition == "" ? "" : e.condition.split("=")[1].split("^")[0].trim();
+
+    //         // reference comes from question.answer.answerElementValues. This might be an empty array.
+    //         if (e.answer.answerElementValues.length > 0) {
+    //             obj['reference'] = {
+    //                 "label": e.answer.answerElementValues[0].label,
+    //                 "value": e.answer.answerElementValues[0].value
+    //             };
+    //         }
+    //     });
+
+    //     return questions;
+    // },
+
+    // _validate: function(questions) {
+    // 	questions = this._validateUniqueness(questions);
 
 
-	},
+    // },
 
-	// Set valid to false if he location is not unique
-	_validateUniqueness: function(questions) {
+    // Set valid to false if he location is not unique
+    // _validateUniqueness: function(questions) {
 
 
-		return questions;
-	},
+    // 	return questions;
+    // },
 
     type: 'DecisionParser'
 };]]></script>
@@ -95,13 +168,13 @@ DecisionParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-22 21:28:04</sys_created_on>
         <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>DecisionParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-23 04:02:59</sys_updated_on>
+        <sys_updated_on>2026-03-24 02:43:30</sys_updated_on>
     </sys_script_include>
 </record_update>
