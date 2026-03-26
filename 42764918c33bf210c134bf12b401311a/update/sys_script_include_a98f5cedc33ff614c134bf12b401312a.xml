@@ -161,14 +161,14 @@ DecisionParser.prototype = {
         this._decision = gr_decision.getValue("sys_id");
     },
 
-    getEntries: function(helper, filter = this.VALID) {
+    getEntries: function(helper, filter = this.Filter.VALID, includeDefaultAnswer = false) {
         var dt = new sn_dt.DecisionTableAPI();
         var questions = dt.getQuestions(this._decision);
-        return helper(questions, filter);
+        return helper(questions, filter, includeDefaultAnswer);
     },
 
-    getMap: function(helper, filter = this.VALID) {
-        var entries = this.getEntries(helper, filter);
+    getMap: function(helper, filter = this.Filter.VALID, includeDefaultAnswer = false) {
+        var entries = this.getEntries(helper, filter, includeDefaultAnswer);
 
         // filter out entries with no location, we 
         // cannot match on them with any valid value
@@ -198,13 +198,13 @@ DecisionParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-22 21:28:04</sys_created_on>
         <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
-        <sys_mod_count>57</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>DecisionParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-26 03:34:54</sys_updated_on>
+        <sys_updated_on>2026-03-26 05:30:39</sys_updated_on>
     </sys_script_include>
 </record_update>
