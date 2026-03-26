@@ -14,51 +14,89 @@ DecisionParser.prototype = {
     _decision: "",
     _entries: [],
 
-    DEFAULT_HELPER: function(questions, includeDefaultAnswer = false) {
+    DEFAULT_HELPER: function(questions, filter = DecisionParser.Filter.VALID, includeDefaultAnswer = false) {
+		
+        //  {
+        //   "result": [ <-- take only this array
+        //     {
+        //       "defaultAnswer": true,
         var entries = questions.result;
+
         if (!includeDefaultAnswer) entries = entries.filter(e => e.defaultAnswer == false);
 
         entries = entries.map(function(e) {
-            // The question has a 'answer.valid' property, and we treat that
-            // as our 'valid' for now. May override later.
-
-            // In a few cases, answer.valid is false, such as if the 
-            // referenced location has been deleted. We do not get a 
-            // message saying what the problem is, so we do not set message here.
+            // The question has a 'answer.valid' property, but we do not use it,
+            // it can be misleading in rare cases. Set valid to true for now.
             var obj = {
-                "valid": e.answer.valid,
+                "valid": true,
                 "location": "",
                 "message": ""
             };
 
-            // In a few cases we will set valid to false for other reasons.
-
             // Ex: "condition": "u_location=54^EQ",
             obj.location = e.condition == "" ? "" : e.condition.split("=")[1].split("^")[0].trim();
 
-            // reference comes from question.answer.answerElementValues. This might be an empty array.
-            if (e.answer.answerElementValues.length > 0) {
-                obj['reference'] = {
-                    "label": e.answer.answerElementValues[0].label,
-                    "value": e.answer.answerElementValues[0].value
-                };
-            } else {
+            // In rare cases the condition will be empty, making this entry invalid
+            if (obj.location == "") {
                 obj.valid = false;
                 obj.message = "No Location";
             }
+
+            // question.answer.answerElementValues.length will be > 0 if the
+            // location is mapped to something. However, that reference could
+            // be broken. We will check later, for now just capture the reference.
+            if (e.answer.answerElementValues.length > 0) {
+
+                // In rare cases we get a broken Reference, if the Reference
+                // the user selected is deleted. In these cases the
+                // answerElement array is populated but valid is false
+                // and label is empty:
+                //
+                // 	"answerElementValues": [
+                //   {
+                //     "valid": false, <--
+                //     "label": "", <--
+                //     "answerElementName": "u_location",
+                //     "type": "reference",
+                //     "value": "25ab9a3b0a0a0bb300462c63ec6c1fb8",
+                //   }
+                // ],
+                if (e.answer.answerElementValues[0].valid == false && e.answer.answerElementValues[0].label == "") {
+                    // broken Reference
+                    obj.valid = false;
+                    obj.message = "No Location";
+                } else {
+                    // OK, good Reference
+                    obj['reference'] = {
+                        "label": e.answer.answerElementValues[0].label,
+                        "value": e.answer.answerElementValues[0].value
+                    };
+                }
+            }
+
             return obj;
         });
 
-        // If any object has no reference, mark it invalid
+        // If the location was not mapped to anything, answer.answerElementValues
+        // is an empty array, and we mark this invalid
         entries
             .filter(function(e) {
                 return e.valid && !Object.hasOwn(e, 'reference');
             })
             .forEach(function(e) {
                 e.valid = false;
-                e.message = "no valid result";
+                e.message = "No Location";
             });
 
+        // If any entry has a blank location code, mark it invalid
+        entries
+            .filter(function(e) {
+                return e.valid && e.location.length == 0;
+            })
+            .forEach(function(e) {
+                e.valid = false;
+                e.message = "no location";
+            });
 
         // If any entry has a blank location, mark it invalid
         entries
@@ -70,8 +108,8 @@ DecisionParser.prototype = {
                 e.message = "no location";
             });
 
-        // Get all the locations, check for duplicates, mark invalid
-        // any entry having one of these
+        // Check for duplicate loction codes, mark invalid
+        // any entry having one of these. No return value.
         var locations = [];
         entries
             .filter(function(e) {
@@ -91,6 +129,20 @@ DecisionParser.prototype = {
                 }
             });
 
+		// The filter argument is one of {Filter.VALID, Filter.INVALID, Filter.ALL},
+		// and refers to our domain definition of valid, not the valid assigned
+		// by the API
+		if (filter == this.Filter.VALID) {
+            entries = entries.filter(function(e) {
+                return e.valid == true;
+            });
+        }
+        if (filter == this.Filter.INVALID) {
+            entries = entries.filter(function(e) {
+                return e.valid == false;
+            });
+        }
+
         return entries;
     },
 
@@ -109,14 +161,14 @@ DecisionParser.prototype = {
         this._decision = gr_decision.getValue("sys_id");
     },
 
-    getEntries: function(helper) {
+    getEntries: function(helper, filter = this.VALID) {
         var dt = new sn_dt.DecisionTableAPI();
         var questions = dt.getQuestions(this._decision);
-        return helper(questions);
+        return helper(questions, filter);
     },
 
-    getMap: function(helper) {
-        var entries = this.getEntries(helper);
+    getMap: function(helper, filter = this.VALID) {
+        var entries = this.getEntries(helper, filter);
 
         // filter out entries with no location, we 
         // cannot match on them with any valid value
@@ -146,13 +198,13 @@ DecisionParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-22 21:28:04</sys_created_on>
         <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>57</sys_mod_count>
         <sys_name>DecisionParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-25 03:44:25</sys_updated_on>
+        <sys_updated_on>2026-03-26 03:34:54</sys_updated_on>
     </sys_script_include>
 </record_update>
