@@ -2,35 +2,29 @@
     <sys_transform_script action="INSERT_OR_UPDATE">
         <active>true</active>
         <map display_value="Hardware Location">a24dcd94c37bf210c134bf12b401310f</map>
-        <order>200</order>
+        <order>100</order>
         <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
-    // Populate the Ignore fields (Ignore=true/false, Ignore reason)
-	// for Import Set rows whose location matches an invalid entry.
-	// The entry gives us the reason the row was skipped.
-
-    // This will not tag rows whose location is not mapped at all.
-    // Another script will mark those up with a generic message.
+    // Populate a cmn_location Reference based on location code
+	// for rows not already marked ignore and which do not yet
+	// have a Location
 
     // 	{
-    //   "54": {
-    //     "valid": false,
-    //     "message": "Duplicate location",
+    //   "752": {
+    //     "valid": true,
+    //     "message": "",
     //     "reference": {
-    //       "label": "...",
-    //       "value": "..."
+    //       "label": "10065 East Harvard Avenue, Denver,CO",
+    //       "value": "25ab8f300a0a0bb300d99f69c3ac24cd"
     //     }
-    //   }, 
-	//   ...
-	//  }
+    //   },...}
     var parser = new x_42999_decision_0.DecisionParser("Vendor Location Lookup");
-    var entries = parser.getMap(parser.DEFAULT_HELPER.bind(parser), parser.Filter.INVALID);
+    var entries = parser.getMap(parser.DEFAULT_HELPER.bind(parser), parser.Filter.VALID);
 
     if (Object.keys(entries).length > 0) {
 
-        // Get import rows having one of these invalid locations, where the
-        // Location reference is not already set and the ignore field is
-		// empty or not set. Populate the ignore reason from the entry's message.
-		var gr_is_row = new GlideRecord("x_42999_decision_0_hardware_location");
+        // Get import rows having one of these locations, where the
+        // Location reference is not already set
+        var gr_is_row = new GlideRecord("x_42999_decision_0_hardware_location");
         gr_is_row.addQuery("sys_import_set", import_set.sys_id);
 		gr_is_row.addQuery("u_ignore", false);
         gr_is_row.addEncodedQuery("u_locationIN" + Object.keys(entries).join(","));
@@ -40,24 +34,23 @@
             gr_is_row.next();
             var locationCode = gr_is_row.getValue("u_location");
             var entry = entries[locationCode];
-            gr_is_row.setValue("u_ignore", true);
-			gr_is_row.setValue("u_ignore_reason", entry.message);
+            gr_is_row.setValue("u_location_ref", entry.reference.value);
             gr_is_row.update();
         }
     }
 })(source, map, log, target);]]></script>
         <sys_class_name>sys_transform_script</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-03-19 03:14:47</sys_created_on>
-        <sys_id>fb9d49d4c37bf210c134bf12b40131c0</sys_id>
-        <sys_mod_count>20</sys_mod_count>
+        <sys_created_on>2026-03-27 03:12:16</sys_created_on>
+        <sys_id>91e95e7ac3377210c134bf12b401313e</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>onStart</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
-        <sys_update_name>sys_transform_script_fb9d49d4c37bf210c134bf12b40131c0</sys_update_name>
+        <sys_update_name>sys_transform_script_91e95e7ac3377210c134bf12b401313e</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-27 03:41:45</sys_updated_on>
+        <sys_updated_on>2026-03-27 03:45:50</sys_updated_on>
         <when>onStart</when>
     </sys_transform_script>
 </record_update>
