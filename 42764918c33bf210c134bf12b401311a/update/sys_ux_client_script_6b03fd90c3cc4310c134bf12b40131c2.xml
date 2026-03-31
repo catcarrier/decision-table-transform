@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ux_client_script">
+    <sys_ux_client_script action="INSERT_OR_UPDATE">
+        <controller_preset/>
+        <includes/>
+        <macroponent display_value="Default">eb35c7ccc3480310c134bf12b40131d9</macroponent>
+        <name>stylized_text_9/now_default/text</name>
+        <preset/>
+        <required_translations>[]</required_translations>
+        <script><![CDATA[/**
+ * @param {params} params
+ * @param {api} params.api
+ * @param {TransformApiHelpers} params.helpers
+ */
+function evaluateProperty({
+    api,
+    helpers
+}) {
+    // No reference at all means the location code is not mapped
+    // to anything. This should be rare.
+    if (!api.item.value.reference) return "(No Location selected)";
+
+    // Assumes that an entry returned as valid has a good
+    // reference and the label is populated
+    if (api.item.value.valid) return api.item.value.reference.label;
+
+    // We already accounted for there being no Reference
+    // selected, and now we know the entry was returned as
+    // invalid. This could mean one of:
+    // 1. the selected Reference is invalid (label will be empty), or
+    // 2. entry is invalid for other reason
+
+    // Check for (1) and return the sys_id
+    if (api.item.value.reference.label == "") {
+        return api.item.value.reference.value;
+    }
+ 
+    return api.item.value.reference.label;
+}]]></script>
+        <script_api_version>2.0.0</script_api_version>
+        <sys_class_name>sys_ux_client_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-31 16:33:18</sys_created_on>
+        <sys_id>6b03fd90c3cc4310c134bf12b40131c2</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>stylized_text_9/now_default/text</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_ux_client_script_6b03fd90c3cc4310c134bf12b40131c2</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-31 17:16:33</sys_updated_on>
+        <target>macroponent</target>
+        <type>transform</type>
+    </sys_ux_client_script>
+</record_update>
