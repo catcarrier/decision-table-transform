@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_42999_decision_0.ImportSetUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ImportSetUtil</name>
+        <sandbox_callable>true</sandbox_callable>
+        <script><![CDATA[var ImportSetUtil = Class.create();
+ImportSetUtil.prototype = {
+    initialize: function() {
+    },
+
+	getLastImportSetSysId: function() {
+		var result = "";
+		const dataSourceSysId = "31ec4194c37bf210c134bf12b401314c";
+		var grImportSet = new GlideRecord("sys_import_set");
+		grImportSet.addQuery("data_source", dataSourceSysId);
+		grImportSet.orderByDesc("sys_created_on");
+		grImportSet.setLimit(1);
+		grImportSet.query();
+		if(grImportSet.hasNext()) {
+			grImportSet.next();
+			result = grImportSet.getValue("sys_id");
+		}
+		return result;
+	},
+
+    type: 'ImportSetUtil'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-31 02:25:54</sys_created_on>
+        <sys_id>586576ccc3c40310c134bf12b40131a4</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ImportSetUtil</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_script_include_586576ccc3c40310c134bf12b40131a4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-31 02:38:06</sys_updated_on>
+    </sys_script_include>
+</record_update>
