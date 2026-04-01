@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_script">
+    <sys_transform_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <map/>
+        <order>500</order>
+        <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
+
+	// For rows not having the ignore marker, populate the
+    // Model if u_model (the vendor's model String) is
+	// uniquely mapped to a Model reference via the Models map
+
+	var gr_ds = new GlideRecord("sys_data_source");
+	gr_ds.addQuery("name", "Models"); // assumption #1: is unique
+	gr_ds.setLmit(1);
+	gr_ds.query();
+	gr_ds.next(); // assumption #2: row is found
+
+	// Models map lives here as attachment
+    const ds_sys_id = gr_ds.getValue("sys_id");
+    var gr_att = new GlideRecord("sys_attachment");
+    gr_att.addQuery("table_name", "sys_data_source");
+    gr_att.addQuery("table_sys_id", ds_sys_id);
+    gr_att.setLimit(1);
+    gr_att.query();
+    gr_att.next(); // assumption #3: attachment is found and is Excel
+    var parser = new x_42999_decision_0.ModelParser();
+    var entries = parser.getMap(
+		gr_att, 
+		parser.DEFAULT_HELPER.bind(parser), 
+		parser.Filter.VALID
+	);
+    if (Object.keys(entries).length > 0) {
+        var gr_is_row = new GlideRecord("x_42999_decision_0_hardware_location");
+        gr_is_row.addQuery("sys_import_set", import_set.sys_id);
+        gr_is_row.addQuery("u_ignore", false);
+        gr_is_row.addEncodedQuery("u_modelIN" + Object.keys(entries).join(","));
+        gr_is_row.addEncodedQuery("u_model_refISEMPTY");
+        gr_is_row.query();
+        while (gr_is_row.hasNext()) {
+            gr_is_row.next();
+
+			// vendor's model String
+            var model = gr_is_row.getValue("u_model");
+
+			// Returns an array called refs, each ref has a sys_id.
+			// If the entry is valid (we filtered for only VALID entries)
+			// this array has a single element
+            var entry = entries[model];
+            gr_is_row.setValue("u_model_ref", entry.refs[0].sys_id);
+            gr_is_row.update();
+        }
+    }
+
+})(source, map, log, target);]]></script>
+        <sys_class_name>sys_transform_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-01 22:58:53</sys_created_on>
+        <sys_id>4f97907cc344c310c134bf12b4013138</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>onStart</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_transform_script_4f97907cc344c310c134bf12b4013138</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-01 22:58:53</sys_updated_on>
+        <when>onStart</when>
+    </sys_transform_script>
+</record_update>
