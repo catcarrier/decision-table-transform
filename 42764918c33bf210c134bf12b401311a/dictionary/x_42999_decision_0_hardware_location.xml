@@ -4,10 +4,15 @@
         <element label="Location" max_length="32" name="u_location_ref" reference="cmn_location" type="reference"/>
         <element label="Ignore Reason" max_length="40" name="u_ignore_reason" type="string"/>
         <element label="asset tag" max_length="40" name="u_asset_tag" type="string"/>
+        <element label="model" max_length="40" name="u_model" type="string"/>
         <element label="location" max_length="40" name="u_location" type="string"/>
+        <element label="Model" max_length="32" name="u_model_ref" reference="cmdb_model" type="reference"/>
         <element label="serial number" max_length="40" name="u_serial_number" type="string"/>
         <index name="index">
             <element name="u_location_ref"/>
+        </index>
+        <index name="index2">
+            <element name="u_model_ref"/>
         </index>
     </element>
 </database>

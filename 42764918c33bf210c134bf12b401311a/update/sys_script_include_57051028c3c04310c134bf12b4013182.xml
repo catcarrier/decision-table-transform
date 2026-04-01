@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_42999_decision_0.BaseParser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>BaseParser</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var BaseParser = Class.create();
+BaseParser.prototype = {
+    table_name: "",
+    entries: [],
+
+    DEFAULT_HELPER: function(grattachment, fields = ["key", "value"], filter = BaseParser.FILTER.ALL) {
+        var objects = [];
+        var parser = new sn_impex.GlideExcelParser();
+        var attachment = new GlideSysAttachment();
+        var attachmentStream = attachment.getContentStream(grattachment.sys_id);
+        parser.parse(attachmentStream);
+
+        while (parser.next()) {
+            var rowCount = 0;
+var row = parser.getRow();
+			
+
+            // break when all requested columns are empty
+            var doBreak = true;
+            fields.forEach(function(f) {
+				gs.info(row[f]);
+                if (!gs.nil(row[f])) doBreak = false;
+            });
+            if (doBreak) {
+                gs.info("Breaking at row " + rowCount);
+                break;
+            }
+
+            var object = {};
+            fields.forEach(function(f) {
+                object[f] = row[f] || "";
+            });
+            objects.push(object);
+
+        }
+        return objects;
+    },
+
+    Filter: {
+        ALL: 0,
+        VALID: 1,
+        INVALID: 2
+    },
+
+
+    // DEFAULT_HELPER: function(objects, filter = BaseParser.FILTER.ALL) {
+
+    //     // For each object
+
+    // },
+
+
+    initialize: function() {},
+
+    getEntries: function(gr, helper, filter = this.Filter.ALL) {
+        return helper(gr, ["key", "value"], filter);
+        //throw "please overide this function";
+    },
+
+
+
+
+    type: 'BaseParser'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-01 04:02:57</sys_created_on>
+        <sys_id>57051028c3c04310c134bf12b4013182</sys_id>
+        <sys_mod_count>13</sys_mod_count>
+        <sys_name>BaseParser</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_script_include_57051028c3c04310c134bf12b4013182</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-01 05:13:19</sys_updated_on>
+    </sys_script_include>
+</record_update>

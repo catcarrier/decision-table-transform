@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description/>
+        <name>Read entries and parse</name>
+        <record_for_rollback>false</record_for_rollback>
+        <script><![CDATA[const ds_sys_id = "1f5e18a8c3044310c134bf12b4013136"; // Model data source, attachment lives here
+var gr_att = new GlideRecord("sys_attachment");
+gr_att.addQuery("table_name", "sys_data_source");
+gr_att.addQuery("table_sys_id", ds_sys_id);
+gr_att.setLimit(1);
+gr_att.query();
+gr_att.next();
+var parser = new x_42999_decision_0.BaseParser();
+var objects = parser.getEntries(gr_att, parser.DEFAULT_HELPER.bind(parser));
+gs.info(JSON.stringify(objects, null, 2));
+]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-01 05:15:09</sys_created_on>
+        <sys_id>a9e5e468c3444310c134bf12b40131a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Read entries and parse</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_script_fix_a9e5e468c3444310c134bf12b40131a6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-01 05:15:09</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>
