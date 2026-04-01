@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard">
+    <par_dashboard action="DELETE">
+        <active>true</active>
+        <base_dashboard/>
+        <certified>false</certified>
+        <description>A look at the Hardware Data import set</description>
+        <experience/>
+        <grid>48</grid>
+        <name>Hardware Data Import</name>
+        <sys_class_name>par_dashboard</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-31 18:10:45</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>69ed8258c3808310c134bf12b40131ce</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hardware Data Import</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>par_dashboard_69ed8258c3808310c134bf12b40131ce</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-31 18:10:45</sys_updated_on>
+        <sys_ux_app_config/>
+        <sys_ux_app_route/>
+        <sys_ux_macroponent/>
+        <sys_ux_screen/>
+        <sys_ux_screen_type/>
+    </par_dashboard>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>par_dashboard_69ed8258c3808310c134bf12b40131ce</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="par_dashboard"><par_dashboard action="INSERT_OR_UPDATE"><active>true</active><base_dashboard/><certified>false</certified><description>A look at the Hardware Data import set</description><experience/><grid>48</grid><name>Hardware Data Import</name><sys_class_name>par_dashboard</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-31 18:10:45</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>69ed8258c3808310c134bf12b40131ce</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Hardware Data Import</sys_name><sys_overrides/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>par_dashboard_69ed8258c3808310c134bf12b40131ce</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-31 18:10:45</sys_updated_on><sys_ux_app_config/><sys_ux_app_route/><sys_ux_macroponent/><sys_ux_screen/><sys_ux_screen_type/></par_dashboard></record_update>]]></payload>
+        <payload_hash>-1184454954</payload_hash>
+        <record_name>Hardware Data Import</record_name>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-31 18:10:45</sys_created_on>
+        <sys_id>e9ed8258c3808310c134bf12b40131d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d451741630000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-31 18:10:45</sys_updated_on>
+        <type>PAR Dashboard</type>
+        <update_guid>a9ed82581d80831052f4cdfd26a911d0</update_guid>
+        <update_guid_history>a9ed82581d80831052f4cdfd26a911d0:-1184454954</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Hardware Data Import">94f77a5cc3c40310c134bf12b40131b8</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-31 21:14:27</sys_created_on>
+        <sys_db_object display_value="" name="par_dashboard">par_dashboard</sys_db_object>
+        <sys_id>28215fdefacf40ea90716bb7be35c6a4</sys_id>
+        <sys_metadata>69ed8258c3808310c134bf12b40131ce</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Hardware Data Import</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>par_dashboard_69ed8258c3808310c134bf12b40131ce</sys_update_name>
+        <sys_update_version display_value="par_dashboard_69ed8258c3808310c134bf12b40131ce">e9ed8258c3808310c134bf12b40131d1</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-31 21:14:27</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

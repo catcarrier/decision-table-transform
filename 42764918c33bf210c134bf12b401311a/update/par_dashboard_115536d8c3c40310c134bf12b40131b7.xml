@@ -3,25 +3,25 @@
         <active>true</active>
         <base_dashboard/>
         <certified>false</certified>
-        <description>A look at the most recent import of vendor hardware data.</description>
+        <description>A look at the Hardware Data import set</description>
         <experience/>
         <grid>48</grid>
-        <name>Hardware Import Result</name>
+        <name>Hardware Data Import</name>
         <sys_class_name>par_dashboard</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2026-03-31 18:04:54</sys_created_on>
+        <sys_created_on>2026-03-31 21:03:01</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>849c8e54c3808310c134bf12b4013195</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Hardware Import Result</sys_name>
+        <sys_id>115536d8c3c40310c134bf12b40131b7</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Hardware Data Import</sys_name>
         <sys_overrides/>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
-        <sys_update_name>par_dashboard_849c8e54c3808310c134bf12b4013195</sys_update_name>
+        <sys_update_name>par_dashboard_115536d8c3c40310c134bf12b40131b7</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-31 18:04:54</sys_updated_on>
+        <sys_updated_on>2026-03-31 21:42:04</sys_updated_on>
         <sys_ux_app_config/>
         <sys_ux_app_route/>
         <sys_ux_macroponent/>
