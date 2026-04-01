@@ -11,22 +11,22 @@ gr_att.addQuery("table_sys_id", ds_sys_id);
 gr_att.setLimit(1);
 gr_att.query();
 gr_att.next();
-var parser = new x_42999_decision_0.BaseParser();
-var objects = parser.getEntries(gr_att, parser.DEFAULT_HELPER.bind(parser));
+var parser = new x_42999_decision_0.ModelParser();
+var objects = parser.parse(gr_att, parser.DEFAULT_HELPER.bind(parser), parser.Filter.ALL);
 gs.info(JSON.stringify(objects, null, 2));
 ]]></script>
         <sys_class_name>sys_script_fix</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-04-01 05:15:09</sys_created_on>
         <sys_id>a9e5e468c3444310c134bf12b40131a6</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Read entries and parse</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_fix_a9e5e468c3444310c134bf12b40131a6</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-01 05:15:09</sys_updated_on>
+        <sys_updated_on>2026-04-01 22:06:23</sys_updated_on>
         <unloadable>false</unloadable>
     </sys_script_fix>
 </record_update>
