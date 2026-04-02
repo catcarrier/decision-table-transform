@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_script">
+    <sys_transform_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <map display_value="Hardware Import">a24dcd94c37bf210c134bf12b401310f</map>
+        <order>600</order>
+        <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
+
+    // For rows where u_model_ref is still not populated,
+    // insert the ignore marker and a generic message.
+    var gr_is_row = new GlideRecord("x_42999_decision_0_hardware_location");
+    gr_is_row.addQuery("sys_import_set", import_set.sys_id);
+    gr_is_row.addQuery("u_ignore", false);
+    gr_is_row.addEncodedQuery("u_model_refISEMPTY");
+    gr_is_row.query();
+    gr_is_row.setValue("u_ignore", true);
+    gr_is_row.setValue("u_ignore_reason", "No Model mapped");
+    gr_is_row.updateMultiple();
+
+})(source, map, log, target);]]></script>
+        <sys_class_name>sys_transform_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-04-02 04:03:43</sys_created_on>
+        <sys_id>a1fc1534c38cc310c134bf12b40131e4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>onStart</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_transform_script_a1fc1534c38cc310c134bf12b40131e4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-04-02 04:03:43</sys_updated_on>
+        <when>onStart</when>
+    </sys_transform_script>
+</record_update>

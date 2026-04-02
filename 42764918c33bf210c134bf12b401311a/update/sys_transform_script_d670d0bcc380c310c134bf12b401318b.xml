@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_transform_script">
     <sys_transform_script action="INSERT_OR_UPDATE">
         <active>true</active>
-        <map/>
+        <map display_value="Hardware Import">a24dcd94c37bf210c134bf12b401310f</map>
         <order>400</order>
         <script><![CDATA[(function runTransformScript(source, map, log, target /*undefined onStart*/ ) {
 
     // For rows not already having the ignore marker, populate the
-    // ignore marker if u_model (the vendor's model String) does
-	// not uniquely map to a Model reference via the Models map
+    // ignore marker if u_model (the vendor's model String) maps
+	// to a Model map that is invalid for whatever reason; 
+	// record the message returned by the parser ("Ambiguous"etc)
 
 	var gr_ds = new GlideRecord("sys_data_source");
 	gr_ds.addQuery("name", "Models"); // assumption #1: is unique
-	gr_ds.setLmit(1);
+	gr_ds.setLimit(1);
 	gr_ds.query();
 	gr_ds.next(); // assumption #2: row is found
     const ds_sys_id = gr_ds.getValue("sys_id"); // Models map lives here as attachment
@@ -49,14 +50,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-04-01 22:48:14</sys_created_on>
         <sys_id>d670d0bcc380c310c134bf12b401318b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>onStart</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy/>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_transform_script_d670d0bcc380c310c134bf12b401318b</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-01 22:48:14</sys_updated_on>
+        <sys_updated_on>2026-04-02 04:16:56</sys_updated_on>
         <when>onStart</when>
     </sys_transform_script>
 </record_update>

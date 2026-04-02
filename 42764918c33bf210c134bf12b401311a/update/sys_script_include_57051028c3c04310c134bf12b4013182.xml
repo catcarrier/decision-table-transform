@@ -13,9 +13,6 @@
 BaseParser.prototype = {
     table_name: "",
 
-    /**
-     * Push a reference into this object based on @value
-     */
     getMatches: function(e) {
         var gr_table = new GlideRecord(this.table_name);
 
@@ -93,8 +90,8 @@ BaseParser.prototype = {
             fields.forEach(function(f) {
                 object[f] = row[f] || "";
             });
-            objects.push(object);
 
+            objects.push(object);
         }
 
         return objects;
@@ -155,7 +152,8 @@ BaseParser.prototype = {
             acc[item.key] = {
 				"value": item.value,
                 "valid": item.valid,
-                "message": item.message
+                "message": item.message,
+				"refs": item.refs || []
             };
             return acc;
         }, {});
@@ -167,13 +165,13 @@ BaseParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-04-01 04:02:57</sys_created_on>
         <sys_id>57051028c3c04310c134bf12b4013182</sys_id>
-        <sys_mod_count>34</sys_mod_count>
+        <sys_mod_count>40</sys_mod_count>
         <sys_name>BaseParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_57051028c3c04310c134bf12b4013182</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-04-01 22:31:28</sys_updated_on>
+        <sys_updated_on>2026-04-02 05:36:44</sys_updated_on>
     </sys_script_include>
 </record_update>
