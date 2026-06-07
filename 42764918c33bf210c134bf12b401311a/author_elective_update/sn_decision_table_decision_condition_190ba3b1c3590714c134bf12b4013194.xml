@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sn_decision_table_decision_condition">
+    <sn_decision_table_decision_condition action="DELETE">
+        <decision_input display_value="location">010b63b1c3590714c134bf12b40131d8</decision_input>
+        <decision_table display_value="Single Input Test delta">0d0b63b1c3590714c134bf12b40131d1</decision_table>
+        <default_operator>=</default_operator>
+        <description/>
+        <field/>
+        <field_label/>
+        <field_parent_table/>
+        <label>location</label>
+        <order>100</order>
+        <parent display_value="">7b4ae731c3590714c134bf12b40131ec</parent>
+        <reference/>
+        <sys_class_name>sn_decision_table_decision_condition</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-06 20:06:58</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>190ba3b1c3590714c134bf12b4013194</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sn_decision_table_decision_condition_190ba3b1c3590714c134bf12b4013194</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-06 20:06:58</sys_updated_on>
+        <type display_value="String">747127c1bf3320001875647fcf0739e0</type>
+    </sn_decision_table_decision_condition>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>sn_decision_table_decision_condition_190ba3b1c3590714c134bf12b4013194</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sn_decision_table_decision_condition"><sn_decision_table_decision_condition action="INSERT_OR_UPDATE"><decision_input display_value="location">010b63b1c3590714c134bf12b40131d8</decision_input><decision_table display_value="Single Input Test delta">0d0b63b1c3590714c134bf12b40131d1</decision_table><default_operator>=</default_operator><description/><field/><field_label/><field_parent_table/><label>location</label><order>100</order><parent display_value="">7b4ae731c3590714c134bf12b40131ec</parent><reference/><sys_class_name>sn_decision_table_decision_condition</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-06-06 20:06:58</sys_created_on><sys_domain>global</sys_domain><sys_id>190ba3b1c3590714c134bf12b4013194</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>sn_decision_table_decision_condition_190ba3b1c3590714c134bf12b4013194</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-06-06 20:06:58</sys_updated_on><type display_value="String">747127c1bf3320001875647fcf0739e0</type></sn_decision_table_decision_condition></record_update>]]></payload>
+        <payload_hash>635907666</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-06 20:06:58</sys_created_on>
+        <sys_id>150ba3b1c3590714c134bf12b4013198</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19e9e8bbd400000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-06 20:06:58</sys_updated_on>
+        <type>Decision Condition</type>
+        <update_guid>d10ba3b19d5907142118597f2ae12097</update_guid>
+        <update_guid_history>d10ba3b19d5907142118597f2ae12097:635907666</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">891b27b1c3590714c134bf12b40131b3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-06-06 20:07:13</sys_created_on>
+        <sys_db_object display_value="" name="sn_decision_table_decision_condition">sn_decision_table_decision_condition</sys_db_object>
+        <sys_id>0a76cc7f937946fd8f85b75aa5797061</sys_id>
+        <sys_metadata>190ba3b1c3590714c134bf12b4013194</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>sn_decision_table_decision_condition_190ba3b1c3590714c134bf12b4013194</sys_update_name>
+        <sys_update_version display_value="sn_decision_table_decision_condition_190ba3b1c3590714c134bf12b4013194">150ba3b1c3590714c134bf12b4013198</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-06-06 20:07:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

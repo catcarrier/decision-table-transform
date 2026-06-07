@@ -12,145 +12,68 @@
         <script><![CDATA[var DecisionParser = Class.create();
 DecisionParser.prototype = {
     _decision: "",
-    _entries: [],
 
-    DEFAULT_HELPER: function(questions, filter = DecisionParser.Filter.VALID, includeDefaultAnswer = false) {
-		
-        //  {
-        //   "result": [ <-- take only this array
-        //     {
-        //       "defaultAnswer": true,
-        var entries = questions.result;
+    DEFAULT_HELPER: function(questions /*, filter = DecisionParser.Filter.VALID*/ ) {
 
-        if (!includeDefaultAnswer) entries = entries.filter(e => e.defaultAnswer == false);
+		/* Given a question row from the decision table,
+           return the location code (extracted from the condition property).
+		*/
+		function getLocationCode(question) {
+			var tmp = question.condition || "";
+			tmp = tmp.split("^").filter(function(e) {
+				return e.startsWith("u_location=");
+			});
+			if(tmp.length == 1) return tmp[0].split("=")[1];
+			return "";
+		}
 
-        entries = entries.map(function(e) {
-            // The question has a 'answer.valid' property, but we do not use it,
-            // it can be misleading in rare cases. Set valid to true for now.
-            var obj = {
-                "valid": true,
-                "location": "",
-                "message": ""
+        /* Given a question row from the decision table,
+           return an object representing the question's location.
+		*/
+        function getLocationReference(question) {
+            var result = {
+                "value": "",
+                "label": "",
+                "valid": false
             };
-
-            // Ex: "condition": "u_location=54^EQ",
-            obj.location = e.condition == "" ? "" : e.condition.split("=")[1].split("^")[0].trim();
-
-            // In rare cases the condition will be empty, making this entry invalid
-            if (obj.location == "") {
-                obj.valid = false;
-                obj.message = "No Location";
-            }
-
-            // question.answer.answerElementValues.length will be > 0 if the
-            // location is mapped to something. However, that reference could
-            // be broken. We will check later, for now just capture the reference.
-            if (e.answer.answerElementValues.length > 0) {
-
-                // In rare cases we get a broken Reference, if the Reference
-                // the user selected is deleted. In these cases the
-                // answerElement array is populated but valid is false
-                // and label is empty:
-                //
-                // 	"answerElementValues": [
-                //   {
-                //     "valid": false, <--
-                //     "label": "", <--
-                //     "answerElementName": "u_location",
-                //     "type": "reference",
-                //     "value": "25ab9a3b0a0a0bb300462c63ec6c1fb8",
-                //   }
-                // ],
-                if (e.answer.answerElementValues[0].valid == false && e.answer.answerElementValues[0].label == "") {
-                    // broken Reference
-                    obj.valid = false;
-                    obj.message = "No Location";
-                } else {
-                    // OK, good Reference
-                    obj['reference'] = {
-                        "label": e.answer.answerElementValues[0].label,
-                        "value": e.answer.answerElementValues[0].value
-                    };
+            var tmp = question.answer.answerElementValues.filter(
+                function(e) {
+                    return e.answerElementName == "u_location";
                 }
+            );
+            if (tmp.length == 1) {
+                result.value = tmp[0].value;
+                result.label = tmp[0].label;
+                result.valid = tmp[0].valid; // set to false by the DT API if the reference is busted
             }
+            return result;
+        }
 
-            return obj;
+        var entries = [];
+
+        questions.forEach(function(e) {
+            var entry = {
+                "location": getLocationCode(e),
+				"reference":getLocationReference(e)
+            };
+            entries.push(entry);
         });
 
-        // If the location was not mapped to anything, answer.answerElementValues
-        // is an empty array, and we mark this invalid
-        entries
-            .filter(function(e) {
-                return e.valid && !Object.hasOwn(e, 'reference');
-            })
-            .forEach(function(e) {
-                e.valid = false;
-                e.message = "No Location";
-            });
-
-        // If any entry has a blank location code, mark it invalid
-        entries
-            .filter(function(e) {
-                return e.valid && e.location.length == 0;
-            })
-            .forEach(function(e) {
-                e.valid = false;
-                e.message = "no location";
-            });
-
-        // If any entry has a blank location, mark it invalid
-        entries
-            .filter(function(e) {
-                return e.valid && e.location.length == 0;
-            })
-            .forEach(function(e) {
-                e.valid = false;
-                e.message = "no location";
-            });
-
-        // Check for duplicate loction codes, mark invalid
-        // any entry having one of these. No return value.
-        var locations = [];
-        entries
-            .filter(function(e) {
-                return e.location.length > 0;
-            })
-            .forEach(function(e) {
-                locations.push(e.location);
-            });
-        entries
-            .filter(function(e) {
-                return e.valid == true;
-            })
-            .forEach(function(e) {
-                if (locations.indexOf(e.location) != locations.lastIndexOf(e.location)) {
-                    e.valid = false;
-                    e.message = "Duplicate location";
-                }
-            });
-
-		// The filter argument is one of {Filter.VALID, Filter.INVALID, Filter.ALL},
-		// and refers to our domain definition of valid, not the valid assigned
-		// by the API
-		if (filter == this.Filter.VALID) {
-            entries = entries.filter(function(e) {
-                return e.valid == true;
-            });
-        }
-        if (filter == this.Filter.INVALID) {
-            entries = entries.filter(function(e) {
-                return e.valid == false;
-            });
-        }
+		// Note that validity is measured only by the reference
+		// if(filter == DecisionParser.prototype.Filter.VALID) {
+		// 	entries = entries.filter(
+		// 		function(e) { return e.reference.valid; }
+		// 	);
+		// }
 
         return entries;
     },
 
-    Filter: {
-        ALL: 0,
-        VALID: 1,
-        INVALID: 2
-    },
+    // Filter: {
+    //     ALL: 0,
+    //     VALID: 1,
+    //     INVALID: 2
+    // },
 
     initialize: function(decisionTableName) {
         var gr_decision = new GlideRecord("sys_decision");
@@ -161,20 +84,55 @@ DecisionParser.prototype = {
         this._decision = gr_decision.getValue("sys_id");
     },
 
-    getEntries: function(helper, filter = this.Filter.VALID, includeDefaultAnswer = false) {
-        var dt = new sn_dt.DecisionTableAPI();
-        var questions = dt.getQuestions(this._decision);
-        return helper(questions, filter, includeDefaultAnswer);
+    _filterByConstraints: function(questions, decisionSysId) {
+        var gr_constraint = new GlideRecord("x_42999_decision_0_constraint");
+        gr_constraint.addQuery("u_decision_table", decisionSysId);
+        gr_constraint.addQuery("u_active", true);
+        gr_constraint.orderBy("u_order");
+        gr_constraint.query();
+        while (questions.length > 0 && gr_constraint.hasNext()) {
+            gr_constraint.next();
+
+            // Each Constraint is associated with one Function, a required field
+            var gr_function = new GlideRecord("x_42999_decision_0_function");
+            gr_function.get(gr_constraint.getValue("u_function"));
+
+            // Set params on the function. Not all functions use all params.
+
+            // implicit variable 'objects', an array of json objects
+            var ge = new GlideScopedEvaluator();
+            ge.putVariable("objects", questions);
+
+            // implicit variable "element_name"
+            var elementName = gr_constraint.getValue("u_element");
+            ge.putVariable("element_name", elementName);
+
+            // implicit variable "property"
+            var propertyName = gr_constraint.getValue("u_property");
+            ge.putVariable("property", propertyName);
+
+            // Each Function has a single Script field named u_script
+            ge.putVariable("answer", []);
+            ge.evaluateScript(gr_function, "u_script");
+
+            questions = ge.getVariable("answer");
+        }
+
+        return questions;
     },
 
-    getMap: function(helper, filter = this.Filter.VALID, includeDefaultAnswer = false) {
-        var entries = this.getEntries(helper, filter, includeDefaultAnswer);
+    getEntries: function(helper /*, filter = this.Filter.VALID */) {
+        var dt = new sn_dt.DecisionTableAPI();
+        var questions = dt.getQuestions(this._decision).result;
 
-        // filter out entries with no location, we 
-        // cannot match on them with any valid value
-        entries = entries.filter(function(e) {
-            return e.location.length > 0;
-        });
+        // filter the raw decision table through all active Constraints
+        questions = this._filterByConstraints(questions, this._decision);
+
+        return helper(questions /*, filter */);
+    },
+
+    getMap: function(helper /*, filter = this.Filter.VALID */ ) {
+        var entries = this.getEntries(helper /*, filter*/ );
 
         // reduce remaining entries to map. This may obfuscate
         // certain issues in the data such as duplicated location code.
@@ -198,13 +156,13 @@ DecisionParser.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2026-03-22 21:28:04</sys_created_on>
         <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>85</sys_mod_count>
         <sys_name>DecisionParser</sys_name>
         <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
         <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2026-03-26 05:30:39</sys_updated_on>
+        <sys_updated_on>2026-06-07 04:57:08</sys_updated_on>
     </sys_script_include>
 </record_update>
