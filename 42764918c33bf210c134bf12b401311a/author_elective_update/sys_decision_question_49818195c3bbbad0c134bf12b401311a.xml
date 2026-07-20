@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_question">
+    <sys_decision_question action="DELETE">
+        <active>true</active>
+        <answer>ed19891cc33bf210c134bf12b401313b</answer>
+        <condition table="var__m_sys_decision_input_3d370118c33bf210c134bf12b4013145">u_location=752^EQ<item endquery="false" field="u_location" goto="false" newquery="false" operator="=" or="false" value="752"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <decision_table display_value="Vendor Location Lookup">3d370118c33bf210c134bf12b4013145</decision_table>
+        <default_answer>false</default_answer>
+        <input_table>var__m_sys_decision_input_3d370118c33bf210c134bf12b4013145</input_table>
+        <label>Vendor Location Lookup_200</label>
+        <marked_for_deletion>true</marked_for_deletion>
+        <order>200</order>
+        <sys_class_name>sys_decision_question</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 04:55:15</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>49818195c3bbbad0c134bf12b401311a</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Vendor Location Lookup_200</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_decision_question_49818195c3bbbad0c134bf12b401311a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 05:32:25</sys_updated_on>
+    </sys_decision_question>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>sys_decision_question_49818195c3bbbad0c134bf12b401311a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_question"><sys_decision_question action="INSERT_OR_UPDATE"><active>true</active><answer>ed19891cc33bf210c134bf12b401313b</answer><condition table="var__m_sys_decision_input_3d370118c33bf210c134bf12b4013145">u_location=752^EQ<item endquery="false" field="u_location" goto="false" newquery="false" operator="=" or="false" value="752"/><item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/></condition><decision_table display_value="Vendor Location Lookup">3d370118c33bf210c134bf12b4013145</decision_table><default_answer>false</default_answer><input_table>var__m_sys_decision_input_3d370118c33bf210c134bf12b4013145</input_table><label>Vendor Location Lookup_200</label><marked_for_deletion>true</marked_for_deletion><order>200</order><sys_class_name>sys_decision_question</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-22 04:55:15</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>49818195c3bbbad0c134bf12b401311a</sys_id><sys_mod_count>2</sys_mod_count><sys_name>Vendor Location Lookup_200</sys_name><sys_overrides/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>sys_decision_question_49818195c3bbbad0c134bf12b401311a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-22 05:32:25</sys_updated_on></sys_decision_question></record_update>]]></payload>
+        <payload_hash>1577214734</payload_hash>
+        <record_name>Vendor Location Lookup_200</record_name>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 05:32:25</sys_created_on>
+        <sys_id>210a8d91c3b3fad0c134bf12b40131ea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d1407c0410000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 05:32:25</sys_updated_on>
+        <type>Decision</type>
+        <update_guid>6d0a8d91b8b3fad0491d5b68455d1fe8</update_guid>
+        <update_guid_history>6d0a8d91b8b3fad0491d5b68455d1fe8:1577214734,e93285ddc5bbbad06c4a99a4439861ee:381414715,c1818195c5bbbad0d2d3da7bd41f5520:1863366067</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 05:32:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_question">sys_decision_question</sys_db_object>
+        <sys_id>0696643a9f92439c80527f14c6b25239</sys_id>
+        <sys_metadata>49818195c3bbbad0c134bf12b401311a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Vendor Location Lookup_200</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>sys_decision_question_49818195c3bbbad0c134bf12b401311a</sys_update_name>
+        <sys_update_version display_value="sys_decision_question_49818195c3bbbad0c134bf12b401311a">210a8d91c3b3fad0c134bf12b40131ea</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 05:32:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

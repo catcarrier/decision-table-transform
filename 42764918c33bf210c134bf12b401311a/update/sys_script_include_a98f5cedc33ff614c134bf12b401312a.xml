@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_42999_decision_0.DecisionParser</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Expose Decision Rows as an array of simplified objects, subject to certain filters based on domain logic</description>
+        <mobile_callable>false</mobile_callable>
+        <name>DecisionParser</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var DecisionParser = Class.create();
+DecisionParser.prototype = {
+    _decision: "",
+
+    DEFAULT_HELPER: function(questions /*, filter = DecisionParser.Filter.VALID*/ ) {
+
+        /* Given a question row from the decision table,
+           return the location code (extracted from the condition property).
+		*/
+        function getLocationCode(question) {
+            var tmp = question.condition || "";
+            tmp = tmp.split("^").filter(function(e) {
+                return e.startsWith("u_location=");
+            });
+            if (tmp.length == 1) return tmp[0].split("=")[1];
+            return "";
+        }
+
+        /* Given a question row from the decision table,
+           return an object representing the question's location.
+		*/
+        function getLocationReference(question) {
+            var result = {
+                "value": "",
+                "label": ""
+            };
+            var tmp = question.answer.answerElementValues.filter(
+                function(e) {
+                    return e.answerElementName == "u_location";
+                }
+            );
+            if (tmp.length == 1) {
+                result.value = tmp[0].value;
+                result.label = tmp[0].label;
+            }
+            return result;
+        }
+
+        var entries = [];
+
+        questions.forEach(function(e) {
+            var entry = {
+                "location": getLocationCode(e),
+                "reference": getLocationReference(e)
+            };
+            entries.push(entry);
+        });
+
+        return entries;
+    },
+
+    initialize: function(decisionTableName) {
+        var gr_decision = new GlideRecord("sys_decision");
+        gr_decision.addQuery("name", decisionTableName);
+        gr_decision.setLimit(1);
+        gr_decision.query();
+        gr_decision.next();
+        this._decision = gr_decision.getValue("sys_id");
+    },
+
+    _filterByConstraints: function(questions, decisionSysId) {
+        var gr_constraint = new GlideRecord("x_42999_decision_0_constraint");
+        gr_constraint.addQuery("u_decision_table", decisionSysId);
+        gr_constraint.addQuery("u_active", true);
+        gr_constraint.orderBy("u_order");
+        gr_constraint.query();
+        while (questions.length > 0 && gr_constraint.hasNext()) {
+            gr_constraint.next();
+
+			// Move the retrieval of functions and constraints
+			// out of this SI
+
+            // Each Constraint is associated with one Function, a required field
+            var gr_function = new GlideRecord("x_42999_decision_0_function");
+            gr_function.get(gr_constraint.getValue("u_function"));
+
+            // Set params on the function. Not all functions use all params.
+
+            // implicit variable 'objects', an array of json objects
+            var ge = new GlideScopedEvaluator();
+            ge.putVariable("objects", questions);
+
+            // implicit variable "element_name"
+            var elementName = gr_constraint.getValue("u_element");
+            ge.putVariable("element_name", elementName);
+
+            // implicit variable "property"
+            var propertyName = gr_constraint.getValue("u_property");
+            ge.putVariable("property", propertyName);
+
+            // Each Function has a single Script field named u_script
+            ge.putVariable("answer", []);
+            ge.evaluateScript(gr_function, "u_script");
+
+            questions = ge.getVariable("answer");
+        }
+
+        return questions;
+    },
+
+    getEntries: function(helper /*, filter = this.Filter.VALID */ ) {
+        var dt = new sn_dt.DecisionTableAPI();
+        var questions = dt.getQuestions(this._decision).result;
+
+        // filter the raw decision table through all active Constraints
+        questions = this._filterByConstraints(questions, this._decision);
+
+        return helper(questions /*, filter */ );
+    },
+
+    getMap: function(helper /*, filter = this.Filter.VALID */ ) {
+        var entries = this.getEntries(helper /*, filter*/ );
+
+        // reduce remaining entries to map. This may obfuscate
+        // certain issues in the data such as duplicated location code.
+        // For the clearest view of the data -> use getEntries().
+        // For most efficient iteration over location codes --> use getMap().
+        return entries.reduce((acc, item) => {
+            acc[item.location] = {
+                "valid": item.valid,
+                "message": item.message
+            };
+            if (Object.hasOwn(item, "reference")) {
+                acc[item.location]["reference"] = item["reference"];
+            }
+            return acc;
+        }, {});
+    },
+
+    type: 'DecisionParser'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 21:28:04</sys_created_on>
+        <sys_id>a98f5cedc33ff614c134bf12b401312a</sys_id>
+        <sys_mod_count>89</sys_mod_count>
+        <sys_name>DecisionParser</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_script_include_a98f5cedc33ff614c134bf12b401312a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-07-09 16:14:46</sys_updated_on>
+    </sys_script_include>
+</record_update>

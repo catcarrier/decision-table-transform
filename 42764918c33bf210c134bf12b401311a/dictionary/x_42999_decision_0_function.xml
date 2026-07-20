@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="020c332dc3d98314c134bf12b40131ed" label="Function" max_length="40" name="x_42999_decision_0_function" type="collection">
+        <element display="true" label="Name" mandatory="true" max_length="50" name="u_name" type="string"/>
+        <element label="Script" mandatory="true" max_length="8000" name="u_script" type="script_plain"/>
+        <element label="Comment" max_length="100" name="u_comment" type="string"/>
+    </element>
+</database>

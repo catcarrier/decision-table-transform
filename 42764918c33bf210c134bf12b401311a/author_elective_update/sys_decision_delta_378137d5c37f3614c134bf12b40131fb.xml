@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_delta">
+    <sys_decision_delta action="DELETE">
+        <access>public</access>
+        <active>false</active>
+        <answer_table>sys_decision_multi_result</answer_table>
+        <answer_type>reference</answer_type>
+        <delta/>
+        <description/>
+        <enable_publishing>false</enable_publishing>
+        <label/>
+        <name>Vendor Location Lookup delta</name>
+        <parent display_value="Vendor Location Lookup">3d370118c33bf210c134bf12b4013145</parent>
+        <reference_qualifier/>
+        <status>draft</status>
+        <sys_class_name>sys_decision_delta</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:44:24</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>378137d5c37f3614c134bf12b40131fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Vendor Location Lookup delta</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_decision_delta_378137d5c37f3614c134bf12b40131fb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:44:24</sys_updated_on>
+    </sys_decision_delta>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>sys_decision_delta_378137d5c37f3614c134bf12b40131fb</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_delta"><sys_decision_delta action="INSERT_OR_UPDATE"><access>public</access><active>false</active><answer_table>sys_decision_multi_result</answer_table><answer_type>reference</answer_type><delta/><description/><enable_publishing>false</enable_publishing><label/><name>Vendor Location Lookup delta</name><parent display_value="Vendor Location Lookup">3d370118c33bf210c134bf12b4013145</parent><reference_qualifier/><status>draft</status><sys_class_name>sys_decision_delta</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-22 17:44:24</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>378137d5c37f3614c134bf12b40131fb</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Vendor Location Lookup delta</sys_name><sys_overrides/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>sys_decision_delta_378137d5c37f3614c134bf12b40131fb</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-22 17:44:24</sys_updated_on></sys_decision_delta></record_update>]]></payload>
+        <payload_hash>2144173808</payload_hash>
+        <record_name>Vendor Location Lookup delta</record_name>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:44:24</sys_created_on>
+        <sys_id>3f81b7d1c3b37614c134bf12b40131e5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d16a5e51f0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:44:24</sys_updated_on>
+        <type>Delta Decision Table</type>
+        <update_guid>f78137d52e7f3614b3a33d4568d239fd</update_guid>
+        <update_guid_history>f78137d52e7f3614b3a33d4568d239fd:2144173808</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:44:43</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_delta">sys_decision_delta</sys_db_object>
+        <sys_id>2fdcf76fb0804e548b38d69b4ca92290</sys_id>
+        <sys_metadata>378137d5c37f3614c134bf12b40131fb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Vendor Location Lookup delta</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>sys_decision_delta_378137d5c37f3614c134bf12b40131fb</sys_update_name>
+        <sys_update_version display_value="sys_decision_delta_378137d5c37f3614c134bf12b40131fb">3f81b7d1c3b37614c134bf12b40131e5</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:44:43</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

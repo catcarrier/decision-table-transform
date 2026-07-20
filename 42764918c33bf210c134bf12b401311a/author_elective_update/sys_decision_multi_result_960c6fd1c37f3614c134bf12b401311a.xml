@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_multi_result">
+    <sys_decision_multi_result action="DELETE">
+        <decision_table display_value="Vendor Location Lookup delta">28fbebd1c37f3614c134bf12b401315f</decision_table>
+        <label>Location: 10719 Alpharetta Highway, Roswell,GA</label>
+        <result_elements/>
+        <sys_class_name>sys_decision_multi_result</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:20:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>960c6fd1c37f3614c134bf12b401311a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Location: 10719 Alpharetta Highway, Roswell,GA</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_decision_multi_result_960c6fd1c37f3614c134bf12b401311a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:20:16</sys_updated_on>
+    </sys_decision_multi_result>
+    <sys_variable_value action="DELETE" query="document_key=960c6fd1c37f3614c134bf12b401311a"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_decision_multi_result</document>
+        <document_key>960c6fd1c37f3614c134bf12b401311a</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:20:16</sys_created_on>
+        <sys_id>d20c6fd1c37f3614c134bf12b401311b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:20:16</sys_updated_on>
+        <value>25ab958c0a0a0bb300649c9eb743b6b9</value>
+        <variable display_value="Location">f0fb2fd1c37f3614c134bf12b401316d</variable>
+    </sys_variable_value>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>sys_decision_multi_result_960c6fd1c37f3614c134bf12b401311a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_multi_result"><sys_decision_multi_result action="INSERT_OR_UPDATE"><decision_table display_value="Vendor Location Lookup delta">28fbebd1c37f3614c134bf12b401315f</decision_table><label>Location: 10719 Alpharetta Highway, Roswell,GA</label><result_elements/><sys_class_name>sys_decision_multi_result</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-22 17:20:16</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>960c6fd1c37f3614c134bf12b401311a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Location: 10719 Alpharetta Highway, Roswell,GA</sys_name><sys_overrides/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>sys_decision_multi_result_960c6fd1c37f3614c134bf12b401311a</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-22 17:20:16</sys_updated_on></sys_decision_multi_result><sys_variable_value action="delete_multiple" query="document_key=960c6fd1c37f3614c134bf12b401311a"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_decision_multi_result</document><document_key>960c6fd1c37f3614c134bf12b401311a</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-22 17:20:16</sys_created_on><sys_id>d20c6fd1c37f3614c134bf12b401311b</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-22 17:20:16</sys_updated_on><value>25ab958c0a0a0bb300649c9eb743b6b9</value><variable display_value="Location">f0fb2fd1c37f3614c134bf12b401316d</variable></sys_variable_value></record_update>]]></payload>
+        <payload_hash>592055724</payload_hash>
+        <record_name>Location: 10719 Alpharetta Highway, Roswell,GA</record_name>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:20:16</sys_created_on>
+        <sys_id>560c2355c37f3614c134bf12b4013143</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d168fcd3a0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:20:16</sys_updated_on>
+        <type>Decision Table Multiple Result</type>
+        <update_guid>9e0c6fd1117f3614cacb6ae7003c001d</update_guid>
+        <update_guid_history>9e0c6fd1117f3614cacb6ae7003c001d:592055724</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-22 17:20:19</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_multi_result">sys_decision_multi_result</sys_db_object>
+        <sys_id>2aec4b3edb3f48f0bb425a0bdb474ca4</sys_id>
+        <sys_metadata>960c6fd1c37f3614c134bf12b401311a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Location: 10719 Alpharetta Highway, Roswell,GA</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>sys_decision_multi_result_960c6fd1c37f3614c134bf12b401311a</sys_update_name>
+        <sys_update_version display_value="sys_decision_multi_result_960c6fd1c37f3614c134bf12b401311a">560c2355c37f3614c134bf12b4013143</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-22 17:20:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

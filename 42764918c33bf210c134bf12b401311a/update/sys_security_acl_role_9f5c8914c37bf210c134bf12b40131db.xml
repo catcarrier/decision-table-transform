@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_security_acl_role">
+    <sys_security_acl_role action="INSERT_OR_UPDATE">
+        <sys_class_name>sys_security_acl_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-19 03:08:43</sys_created_on>
+        <sys_id>9f5c8914c37bf210c134bf12b40131db</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_42999_decision_0_hardware_location.x_42999_decision_0.user</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_security_acl display_value="x_42999_decision_0_hardware_location">1f5c8914c37bf210c134bf12b40131d6</sys_security_acl>
+        <sys_update_name>sys_security_acl_role_9f5c8914c37bf210c134bf12b40131db</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-19 03:08:43</sys_updated_on>
+        <sys_user_role display_value="x_42999_decision_0.user" name="x_42999_decision_0.user">c2764918c33bf210c134bf12b4013148</sys_user_role>
+    </sys_security_acl_role>
+</record_update>

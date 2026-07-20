@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="d95a3329c3d98314c134bf12b4013140" label="Constraint" max_length="40" name="x_42999_decision_0_constraint" type="collection">
+        <element label="Order" max_length="40" name="u_order" type="integer"/>
+        <element default="true" label="Active" max_length="40" name="u_active" type="boolean"/>
+        <element label="Decision Table" mandatory="true" max_length="32" name="u_decision_table" reference="sys_decision" type="reference"/>
+        <element label="Property" max_length="40" name="u_property" type="string"/>
+        <element label="Function" mandatory="true" max_length="32" name="u_function" reference="x_42999_decision_0_function" type="reference"/>
+        <element display="true" label="Name" mandatory="true" max_length="50" name="u_name" type="string"/>
+        <element label="Element" max_length="100" name="u_element" type="string"/>
+        <index name="index">
+            <element name="u_decision_table"/>
+        </index>
+        <index name="index2">
+            <element name="u_function"/>
+        </index>
+    </element>
+</database>

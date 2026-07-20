@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_multi_result">
+    <sys_decision_multi_result action="DELETE">
+        <decision_table display_value="Vendor Location Lookup delta">b1e24339c3377210c134bf12b4013170</decision_table>
+        <label>Location: 7525 Paragon Road, Washington,OH</label>
+        <result_elements/>
+        <sys_class_name>sys_decision_multi_result</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-24 03:38:14</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ec130ff1c3777210c134bf12b40131a7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Location: 7525 Paragon Road, Washington,OH</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_update_name>sys_decision_multi_result_ec130ff1c3777210c134bf12b40131a7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-24 03:38:14</sys_updated_on>
+    </sys_decision_multi_result>
+    <sys_variable_value action="DELETE" query="document_key=ec130ff1c3777210c134bf12b40131a7"/>
+    <sys_variable_value action="DELETE">
+        <document>sys_decision_multi_result</document>
+        <document_key>ec130ff1c3777210c134bf12b40131a7</document_key>
+        <order>100</order>
+        <sys_class_name>sys_variable_value</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-24 03:38:14</sys_created_on>
+        <sys_id>a4130ff1c3777210c134bf12b40131a9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-24 03:38:14</sys_updated_on>
+        <value>25ab9fd10a0a0bb300e7d523f5679111</value>
+        <variable display_value="Location">4ee203b5c3777210c134bf12b40131f2</variable>
+    </sys_variable_value>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</application>
+        <file_path/>
+        <instance_id>b0385627ebf8e2d0e483f459bad0cd47</instance_id>
+        <instance_name>dev328090</instance_name>
+        <name>sys_decision_multi_result_ec130ff1c3777210c134bf12b40131a7</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_decision_multi_result"><sys_decision_multi_result action="INSERT_OR_UPDATE"><decision_table display_value="Vendor Location Lookup delta">b1e24339c3377210c134bf12b4013170</decision_table><label>Location: 7525 Paragon Road, Washington,OH</label><result_elements/><sys_class_name>sys_decision_multi_result</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-24 03:38:14</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>ec130ff1c3777210c134bf12b40131a7</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Location: 7525 Paragon Road, Washington,OH</sys_name><sys_overrides/><sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package><sys_policy/><sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope><sys_update_name>sys_decision_multi_result_ec130ff1c3777210c134bf12b40131a7</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-24 03:38:14</sys_updated_on></sys_decision_multi_result><sys_variable_value action="delete_multiple" query="document_key=ec130ff1c3777210c134bf12b40131a7"/><sys_variable_value action="INSERT_OR_UPDATE"><document>sys_decision_multi_result</document><document_key>ec130ff1c3777210c134bf12b40131a7</document_key><order>100</order><sys_class_name>sys_variable_value</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2026-03-24 03:38:14</sys_created_on><sys_id>a4130ff1c3777210c134bf12b40131a9</sys_id><sys_mod_count>0</sys_mod_count><sys_updated_by>admin</sys_updated_by><sys_updated_on>2026-03-24 03:38:14</sys_updated_on><value>25ab9fd10a0a0bb300e7d523f5679111</value><variable display_value="Location">4ee203b5c3777210c134bf12b40131f2</variable></sys_variable_value></record_update>]]></payload>
+        <payload_hash>-554935947</payload_hash>
+        <record_name>Location: 7525 Paragon Road, Washington,OH</record_name>
+        <reverted_from/>
+        <source>90d8095cc33bf210c134bf12b40131a7</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-24 03:38:14</sys_created_on>
+        <sys_id>a0130ff1c3777210c134bf12b40131ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19d1debef650000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-24 03:38:14</sys_updated_on>
+        <type>Decision Table Multiple Result</type>
+        <update_guid>60130ff1ee7772109fad97c64be9b3ac</update_guid>
+        <update_guid_history>60130ff1ee7772109fad97c64be9b3ac:-554935947</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-03-24 03:38:18</sys_created_on>
+        <sys_db_object display_value="" name="sys_decision_multi_result">sys_decision_multi_result</sys_db_object>
+        <sys_id>0303e31070ba40a0b7ebaff5b2708400</sys_id>
+        <sys_metadata>ec130ff1c3777210c134bf12b40131a7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Location: 7525 Paragon Road, Washington,OH</sys_name>
+        <sys_package display_value="Decision Table Transforms" source="x_42999_decision_0">42764918c33bf210c134bf12b401311a</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Decision Table Transforms">42764918c33bf210c134bf12b401311a</sys_scope>
+        <sys_scope_delete display_value="">1cb67ddc957143608353f1c09e813d84</sys_scope_delete>
+        <sys_update_name>sys_decision_multi_result_ec130ff1c3777210c134bf12b40131a7</sys_update_name>
+        <sys_update_version display_value="sys_decision_multi_result_ec130ff1c3777210c134bf12b40131a7">a0130ff1c3777210c134bf12b40131ad</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-03-24 03:38:18</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
